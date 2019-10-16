@@ -48,3 +48,5 @@ Assignments to help guide those learning to program in C# using OOP
 
 * Within your browser that you are using to view these instructions, within github navigate to the assignment folder
 * Each assignment has a readme.md that will display requirements and instructions just like these instructions
+ * Within the browser click on the readme.md
+ * Follow the instructions for each assignment
