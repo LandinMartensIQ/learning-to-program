@@ -17,7 +17,7 @@ This assignment will help verify your understanding of the different core data t
 * Type `cd C:\Git\learning-to-program` and hit enter
 * Type `git checkout master` and hit enter
 * Type `git pull` and hit enter
- * Checking out master and pulling the latest code starts you out on latest changes
+  * Checking out master and pulling the latest code starts you out on latest changes
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_1` and hit enter
   * For example if I were to do this, it would be `git checkout -b LandinM_Assignment_1`
   * This command will create a local branch that is a copy of everything I have created
