@@ -1,4 +1,4 @@
-# Assignment #1 | Lists, Logic and Iterations
+# Assignment #2 | Lists, Logic and Iterations
 
 This assignment will help you understand and process arrays and linked lists that use ICollection and are fundamental for holding data for most of what you will do in future programs.
 
