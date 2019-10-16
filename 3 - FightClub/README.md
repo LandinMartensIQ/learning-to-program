@@ -13,6 +13,9 @@ This assignment will help you understand and use object oriented code and princi
 
 * Open `Git Bash` (windows search for it)
 * Type `cd C:\Git\learning-to-program` and hit enter
+* Type `git checkout master` and hit enter
+* Type `git pull` and hit enter
+ * Checking out master and pulling the latest code starts you out on latest changes
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_3` and hit enter
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_3` and hit enter
 * Open this folder `cd C:\Git\learning-to-program\3 - FightClub` in file explorer
