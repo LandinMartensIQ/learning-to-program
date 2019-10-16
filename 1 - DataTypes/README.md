@@ -7,7 +7,7 @@ This assignment will help verify your understanding of the different core data t
 * Understanding of Data Types `(int, decimal, bool, etc)`
 * Basic `If` statements
 * Basic `Try & Catch` statements
-* Possibly googling how to do things in C# as you run into roadblocks - expected!
+* Possibly googling how to do things in C# as you run into roadblocks - this is expected
   * Googling things and doing self research is a core aspect of being a programmer
   * If you still are having a hard time, ask me for help
 
@@ -26,23 +26,23 @@ This assignment will help verify your understanding of the different core data t
 
 # Assignment Instructions
 
-* With the project open within visual studio, using the solution panel open Tests/WeirdCalculator_Tests.cs.
-* Right click on the class -> run tests.
-  * A test pane should open and show you all them are failing.
-  * If you don't see this, please call me over for help - this should 'just work'.
-* The comment above the tests within the test class will guide you through the test.
+* With the project open within visual studio, using the solution panel open Tests/WeirdCalculator_Tests.cs
+* Right click on the class -> run tests
+  * A test pane should open and show you all them are failing
+  * If you don't see this, please call me over for help - this should 'just work'
+* The comment above the tests within the test class will guide you through the test
 * You will find comments within Code/WeirdCalculator.cs
-  * These will give you some context / food for thought and high level hints for more complex things.
+  * These will give you some context / food for thought and high level hints for more complex things
   
 # Submission Instructions
 
-* When you are done and ready for review you need to push your changes so I can see them.
+* When you are done and ready for review you need to push your changes so I can see them
 * Open `Git Bash` (windows search for it)
 * Type `cd C:\Git\learning-to-program` and hit enter
 * Type `git add .` and hit enter
   * This will stage your all changes in your local branch
 * Type `git commit -m "Assignment Changes"` and hit enter
   * This will create a commit with all the staged files in your local branch
-* Type `git push`
+* Type `git push` and hit enter
   * This will push your local commit(s) to your remote branch
-* Let me know which assignment you have done and I will take a look and review it.
+* Let me know which assignment you have done and I will take a look and review it
