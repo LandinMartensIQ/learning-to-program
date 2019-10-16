@@ -16,7 +16,7 @@ This assignment will help you understand and process arrays and linked lists tha
 * Type `cd C:\Git\learning-to-program` and hit enter
 * Type `git checkout master` and hit enter
 * Type `git pull` and hit enter
- * Checking out master and pulling the latest code starts you out on latest changes
+  * Checking out master and pulling the latest code starts you out on latest changes
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_2` and hit enter
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_2` and hit enter
 * Open this folder `cd C:\Git\learning-to-program\2 - ListsLogicAndIterations` in file explorer
