@@ -9,20 +9,14 @@ Assignments to help guide those learning to program in C# using OOP
   * Worklods To Install:
     * ASP.NET and web development
       * Right Pane [Install Details]
-        * Check off everything except the following:
-        * Web performance and load testing tools
-        * Additional project templates
-        * Architecture and analysis tools
+        * Check off everything!
     * .NET desktop development
       * Right Pane [Install Details]
-        * Check off everything except the following:
-        * PreEmptive Protection - Dotfuscator
-        * .NET Portable Library targeting pack
-        * Architecture and analysis tools
+        * Check off everything!
     * .NET Core cross-platform development
       * Right Pane [Install Details]
         * Check off everything!
-  * Individual components:
+  * Individual components [Tab at the top]:
     * .NET
       * Check off everything!
     * Code Tools
