@@ -16,7 +16,7 @@ This assignment will help you understand and use object oriented code and princi
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_3` and hit enter
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_3` and hit enter
 * Open this folder `cd C:\Git\learning-to-program\3 - FightClub` in file explorer
-* Open `FightClub.csproj` in visual studio 2019
+* Open `FightClub.sln` in visual studio 2019
 
 # Assignment Instructions
 
