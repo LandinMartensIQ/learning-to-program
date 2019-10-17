@@ -96,7 +96,7 @@ namespace ObjectOrientedProblems.Tests.FighterItemInterationTests
 		}
 
 		[TestMethod]
-		public void DrinkPotion_ShouldChangeState_WhenHealthIsZero()
+		public void DrinkPotion_ShouldNotChangeState_WhenHealthIsZero()
 		{
 			var fighter = FightClubGame.HireFighter();
 			var secondFighter = FightClubGame.HireFighter();
