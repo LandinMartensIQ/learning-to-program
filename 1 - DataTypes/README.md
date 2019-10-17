@@ -15,6 +15,9 @@ This assignment will help verify your understanding of the different core data t
 
 * Open `Git Bash` (windows search for it)
 * Type `cd C:\Git\learning-to-program` and hit enter
+* Type `git checkout master` and hit enter
+* Type `git pull` and hit enter
+  * Checking out master and pulling the latest code starts you out on latest changes
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_1` and hit enter
   * For example if I were to do this, it would be `git checkout -b LandinM_Assignment_1`
   * This command will create a local branch that is a copy of everything I have created
@@ -22,7 +25,7 @@ This assignment will help verify your understanding of the different core data t
   * For example if I were to do this, it would be `git push -u origin LandinM_Assignment_1`
   * This command will push your local branch creating a remote branch
 * Open this folder `cd C:\Git\learning-to-program\1 - DataTypes` in file explorer
-* Open `DataTypes.csproj` in visual studio 2019
+* Open `DataTypes.sln` in visual studio 2019
 
 # Assignment Instructions
 

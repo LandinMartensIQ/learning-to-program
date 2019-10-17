@@ -14,10 +14,13 @@ This assignment will help you understand and process arrays and linked lists tha
 
 * Open `Git Bash` (windows search for it)
 * Type `cd C:\Git\learning-to-program` and hit enter
+* Type `git checkout master` and hit enter
+* Type `git pull` and hit enter
+  * Checking out master and pulling the latest code starts you out on latest changes
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_2` and hit enter
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_2` and hit enter
 * Open this folder `cd C:\Git\learning-to-program\2 - ListsLogicAndIterations` in file explorer
-* Open `ListsLogicAndIterations.csproj` in visual studio 2019
+* Open `ListsLogicAndIterations.sln` in visual studio 2019
 
 # Assignment Instructions
 
