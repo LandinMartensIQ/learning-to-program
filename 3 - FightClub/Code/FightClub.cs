@@ -1,4 +1,5 @@
-﻿using ObjectOrientedProblems.Code.Interfaces;
+﻿using FightClub.Code.Objects;
+using ObjectOrientedProblems.Code.Interfaces;
 using System;
 
 namespace ObjectOrientedProblems.Code
@@ -6,18 +7,19 @@ namespace ObjectOrientedProblems.Code
 	public static class FightClubGame
 	{
 		public static IPowerUp PurchasePowerUp()
-		{
-			throw new NotImplementedException();
+		{			            
+            return new PowerUp(); 
+            
 		}
 
 		public static IPotion PurchasePotion()
 		{
-			throw new NotImplementedException();
+            return new Potion();
 		}
 
 		public static IFighter HireFighter()
 		{
-			throw new NotImplementedException();
+            return new Fighter();
 		}
 	}
 }
