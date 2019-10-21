@@ -32,8 +32,8 @@ Assignments to help guide those learning to program in C# using OOP
 
 * Create a folder on your C drive called `Git` so you could navigate to `C:\Git`
 * Open `Git Bash` (windows search for it)
- * This should have been installed via visual studio when you checked off `Git for Windows`
- * If you don't see this, try restarting and if you still don't see it please let me know
+  * This should have been installed via visual studio when you checked off `Git for Windows`
+  * If you don't see this, try restarting and if you still don't see it please let me know
 * Type `cd C:\Git` and hit enter
 * Type `git clone https://github.com/LandinMartensIQ/learning-to-program.git` and hit enter
 * Type `cd learning-to-program` and hit enter
