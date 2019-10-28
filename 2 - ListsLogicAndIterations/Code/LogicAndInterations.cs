@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ListsLogicAndIterations.Code
 {
@@ -7,22 +8,70 @@ namespace ListsLogicAndIterations.Code
 	{
 		public static int For_SumTwoListsAndAllValueThatAreNotFour(int[] numberArray, List<int> numberList)
 		{
-			throw new NotImplementedException();
+            int result = 0;
+            foreach(int i in numberArray)
+            {
+                if (i != 4)
+                    result += i;
+            }
+            foreach(int i in numberList)
+            {
+                if (i != 4)
+                    result += i;
+            }
+            return result;
+            
+            //throw new NotImplementedException();
 		}
 
 		public static int ForEach_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList)
 		{
-			throw new NotImplementedException();
+            int result = 0;
+
+            foreach (int i in numberList)
+            {
+                if (i != 4)
+                result += i;
+            }
+            return result;
+
+            //throw new NotImplementedException();
 		}
 
 		public static int DoWhile_SumValuesWhileCurrentValueIsNot4_ThenStop(List<int> numberList)
 		{
-			throw new NotImplementedException();
+            int result = 0;
+            int i = 0;
+            do
+            {
+                result += numberList[i];
+                if (numberList[i] == 4)
+                    i = numberList.Count;
+                else i++;
+            }
+            while (i < numberList.Count);
+
+            return result;
+
+
+           // throw new NotImplementedException();
 		}
 
 		public static int While_SumValuesWhileCurrentValueIsNot4_ThenStop(List<int> numberList)
 		{
-			throw new NotImplementedException();
+            int i = 0;
+            int result = 0;
+            while (i < numberList.Count)
+            {
+                result += numberList[i];
+                if (numberList[i] != 4)
+                    i++;
+                else
+                    i = numberList.Count;
+            }
+            return result;
+
+            //throw new NotImplementedException();
 		}
 
 		/*
@@ -30,7 +79,18 @@ namespace ListsLogicAndIterations.Code
 		 */
 		public static int Linq_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList)
 		{
-			throw new NotImplementedException();
+
+            int result = 0;
+
+            var filteredlist = from i in numberList
+                               where i != 4
+                               select i;
+            
+            foreach (int i in filteredlist)
+                result += i;
+
+            return result;
+            //throw new NotImplementedException();
 		}
 	}
 }
