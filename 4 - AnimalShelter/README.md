@@ -20,7 +20,7 @@ This assignment will test your ability to create code using even more object ori
 * Type `git pull` and hit enter
 * Type `git checkout -b <your_name_here_without_arrows>_Assignment_4` and hit enter
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_4` and hit enter
-* Open this folder `cd C:\Git\learning-to-program\4 - AnimalShelter` in file explorer
+* Open this folder `C:\Git\learning-to-program\4 - AnimalShelter` in file explorer
 * Open `AnimalShelter.sln` in visual studio 2019
 
 # Assignment Instructions

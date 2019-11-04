@@ -24,7 +24,7 @@ This assignment will help verify your understanding of the different core data t
 * Type `git push -u origin <your_name_here_without_arrows>_Assignment_1` and hit enter
   * For example if I were to do this, it would be `git push -u origin LandinM_Assignment_1`
   * This command will push your local branch creating a remote branch
-* Open this folder `cd C:\Git\learning-to-program\1 - DataTypes` in file explorer
+* Open this folder `C:\Git\learning-to-program\1 - DataTypes` in file explorer
 * Open `DataTypes.sln` in visual studio 2019
 
 # Assignment Instructions
