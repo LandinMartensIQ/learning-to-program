@@ -51,13 +51,12 @@ namespace ObjectOrientedProblems.Code
                 if (_Health + potion.Healing >= 10)
                 {
                     _Health = 10;
-                    _State = FighterState.Healthy;
                 }
                 else if (_Health > 0)
                 {
                     _Health += potion.Healing;
-                    _State = FighterState.Hurt;
                 }
+                Fighterstate();
             }
 
             public void PowerUp(IPowerUp powerUp)
@@ -70,9 +69,11 @@ namespace ObjectOrientedProblems.Code
             public void TakeDamage(IFighter fighter)
             {
                 if (_Health > 0)
-                {
                     _Health -= fighter.Damage;
-                }
+                Fighterstate();
+            }
+            private void Fighterstate()
+            {
                 if (_Health == 0)
                     _State = FighterState.Dead;
                 else if (_Health == 1)
