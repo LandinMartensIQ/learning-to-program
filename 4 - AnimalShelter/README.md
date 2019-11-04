@@ -1,6 +1,6 @@
 # Assignment #4 | Animal Shelter
 
-This assignment will test your ability to create code using even more object oriented principals (OOP). Every assignment before this one, tests were provided for you, however it is now time you start to take over all the coding. You know how basic skills to develop in C# at this point and now it is time to take everything you learned and combine it with OOP to develop a small program.
+This assignment will test your ability to create code using even more object oriented principals (OOP). Every assignment before this one, tests were provided for you, however it is now time you start to take over all the coding. You know the basic skills to develop in C# at this point and now it is time to take everything you learned and combine it with OOP to develop a small program.
 
 # Requirements Before Starting
 

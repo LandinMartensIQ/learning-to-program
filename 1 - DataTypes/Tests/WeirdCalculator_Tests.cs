@@ -164,13 +164,13 @@ namespace DataTypes.Tests
 		}
 
 		[TestMethod]
-		public void ConditionalMath_ShouldAddAndReturnPositiveValue_WhenValuesAreNegativeAndReturnNegativeIsTrue()
+		public void ConditionalMath_ShouldAddAndReturnNegativeValue_WhenValuesAreNegativeAndReturnNegativeIsTrue()
 		{
 			//Arrange
 			var firstValue = -1;
 			var secondValue = -2;
-			var returnNegative = false;
-			var expected = 3m;
+			var returnNegative = true;
+			var expected = -3m;
 
 			//Act
 			var actual = WeirdCalculator.ConditionalMath(firstValue, secondValue, returnNegative);
