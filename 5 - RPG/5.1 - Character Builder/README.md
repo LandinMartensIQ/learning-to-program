@@ -41,7 +41,7 @@ The goal of this specific assignment is to build a character builder from the gr
 				* Supported values are 10 to 20
 		* The sum of all points must be 60, no more and no less
 			* So for example if each was set to 10, this is valid however if each was set to 11 or 9 this is not valid
-		* The character builder should not create a character that does not have the required attributes set
+		* The character builder should not create a character that does not have the required ability points set
 	* After the required character ability points are set, if the character is valid the character builder will now build the character
 
 * Character
