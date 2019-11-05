@@ -2,7 +2,7 @@
 
 The goal of **ALL** remaining assignments is to slowly build a small RPG based upon what a client wants. A RPG is a Role Playing Game - think Skyrim, Fallout, DND, etc. Of course what you will build will a lot smaller in scale.
 
-*Every single assignment going forward will add to the code you will eventually write for assignment `5.1 - Character Builder`.* For this reason, there will not be an assignment 6, just changes to your existing assignment 5. This is why all assignments have a decimal, for example `5.1`, `5.2`, etc. Each assignment should be code reviewed by your mentor **BEFORE** moving onto future assignments. The program will get large and won't be easily to code review if you do all assignments at once and then ask for a code review.
+*Every single assignment going forward will add to the code you will eventually write for assignment `5.1 - Character Builder`.* For this reason, there will not be an assignment 6, just changes to your existing assignment 5. This is why all assignments have a decimal, for example `5.1`, `5.2`, etc. Each assignment should be code reviewed by your mentor **BEFORE** moving onto future assignments. The program will get large and won't be easy to code review if you do all assignments at once and then ask for a code review.
 
 If you introduce bugs into your code, take short cuts, write code that is hard to maintain or write code that is hard to understand; You will feel the impact of your choices first hand and this is important. With that said, as the requirements will come over the course of multiple assignments you will need to make calls for how much effort to put into things as you don't know upfront exactly how your code will be used later.
 
