@@ -9,7 +9,9 @@
 
 # Assignment #5.1 | RPG Character Builder
 
-The goal of this specific assignment is to build a character builder from the ground up for later use in the RPG. The client is still figuring out how they want the rest of the game to work but for now they have at least given some of the requirements for this part of the game. They are not sure yet how exactly they will integrate the character builder into the game so requirements may change in the future. **NOTE: You don't need any sort of user interface for this (not even a console window). Assume your code will be later consumed by a user interface or a console window.** *With that said, if you want, create a console program if you want to interact with your character builder for fun.*
+The goal of this specific assignment is to build a character builder from the ground up for later use in the RPG. The client is still figuring out how they want the rest of the game to work but for now they have at least given some of the requirements for this part of the game. They are not sure yet how exactly they will integrate the character builder into the game so requirements may change in the future.
+
+**NOTE: You don't need any sort of user interface for this (not even a console window). Assume your code will be later consumed by a user interface or a console window.** *With that said, if you want, create a console program if you want to interact with your character builder for fun.*
 
 ### Character Builder Requirements
 
