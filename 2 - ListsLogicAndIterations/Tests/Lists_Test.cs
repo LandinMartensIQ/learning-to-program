@@ -91,7 +91,7 @@ namespace ListsLogicAndIterations.Tests
 		[TestMethod]
 		public void RemoveValue_ShouldNotFail_WhenValueToRemoveDoesNotExist()
 		{
-			var list = new List<decimal> { 1, 2, 3 };
+			var list = new List<decimal> { 1, 2, 3};
 
 			Lists.RemoveValue(list, 4);
 
