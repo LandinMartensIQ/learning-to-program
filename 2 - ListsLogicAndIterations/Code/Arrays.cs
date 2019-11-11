@@ -6,12 +6,23 @@ namespace ListsLogicAndIterations.Code
 	{
 		public static int[] BuildIntArray(int fist, int second)
 		{
-			throw new NotImplementedException();
-		}
+                     
+                int[] intArray;
+                intArray = new int[2];
+                intArray[0] = fist;
+                intArray[1] = second;
+                return intArray;
+            
+        }
 
 		public static int GetArrayValue(int[] array, int position)
 		{
-			throw new NotImplementedException();
+            if (position >= array.Length || position < 0)
+            {
+                return 0;
+            }
+            return array[position]; 
+
 		}
 	}
 }
