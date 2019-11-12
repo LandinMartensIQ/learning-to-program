@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Globalization;
 
 namespace DataTypes.Code
 {
 	public static class WeirdCalculator
 	{
+
 		public static long SimpleWholeNumberAdd(int firstValue, long secondValue)
-		{
-			throw new NotImplementedException();
-		}
+        {
+            var result = firstValue + secondValue;
+
+            return result;
+          //  throw new NotImplementedException();
+        }
 
 		public static decimal SimpleDecimalAdd(float firstValue, double secondValue, decimal thirdValue)
 		{
@@ -19,12 +24,16 @@ namespace DataTypes.Code
 			 * Hint: You can make this method's body one line!
 			 */
 
-			throw new NotImplementedException();
-		}
+            var result = Convert.ToDecimal(firstValue) + Convert.ToDecimal(secondValue) + thirdValue;
+
+            return result;
+
+            // throw new NotImplementedException();
+        }
 
 		public static decimal ComplexDecimalAdd(float firstValue, double secondValue, decimal thirdValue)
 		{
-			/*
+            /*
 			 * There's an interesting thing to point out when comparing double/float and decimal:
 			 * The range of double is ±5.0 × 10−324 to ±1.7 × 10308, while the range of decimal is (-7.9 x 1028 to 7.9 x 1028) / (100 to 28).
 			 * The range of float is half of double.
@@ -40,17 +49,34 @@ namespace DataTypes.Code
 			 * If you are new to exceptions, google "C# Exception Handling" - litterally half our jobs is googling :P
 			 */
 
-			throw new NotImplementedException();
-		}
+            decimal result = 0;
+
+            try
+            {
+                result = Convert.ToDecimal(firstValue) + Convert.ToDecimal(secondValue) + thirdValue;
+            }
+            catch (System.OverflowException)
+            {
+                result = 0;
+            }
+
+            return result;
+
+            //throw new NotImplementedException();
+        }
 
 		public static decimal ComplexAdd(char firstValue, string secondValue)
 		{
 			/*
 			 * You will notice the TDD tests around this just "assume" it will work. Do not worry about handling exceptions or errors, assume input is valid.
 			 */
+            var char2double = char.GetNumericValue(firstValue);
+            var result = Convert.ToDecimal(char2double) + Convert.ToDecimal(secondValue);
 
-			throw new NotImplementedException();
-		}
+            return result;
+
+            //throw new NotImplementedException();
+        }
 
 		public static decimal ConditionalMath(int firstValue, int secondValue, bool returnNegative)
 		{
@@ -58,10 +84,19 @@ namespace DataTypes.Code
 
 			if (returnNegative)
 			{
-				actual = actual * -1;
-			}
+                if (actual < 0)
+                {
+                    return actual;
+                }
+                else
+                    actual = actual * -1;
+            }
+            else if (actual < 0)
+            {
+                actual = System.Math.Abs(actual);
+            }
 
-			return actual;
+            return actual;
 		}
 	}
 }

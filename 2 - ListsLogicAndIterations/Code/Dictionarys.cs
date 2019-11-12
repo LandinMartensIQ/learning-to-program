@@ -6,18 +6,32 @@ namespace ListsLogicAndIterations.Code
 	public static class Dictionarys
 	{
 		public static Dictionary<Guid, decimal> Build(Guid key, decimal value)
-		{
-			throw new NotImplementedException();
-		}
+        {
+            Dictionary<Guid, decimal> storageKeyDictionary = new Dictionary<Guid, decimal>();
+            storageKeyDictionary.Add(key, value);
+
+            return storageKeyDictionary;
+            //throw new NotImplementedException();
+        }
 
 		public static decimal GetValue(Dictionary<Guid, decimal> dict, Guid key)
-		{
-			throw new NotImplementedException();
-		}
+        {
+            do
+            {
+                return dict.GetValueOrDefault(key);
 
-		public static void AddValue(Dictionary<Guid, decimal> dict, Guid key, decimal value)
-		{
-			throw new NotImplementedException();
-		}
+            } while (dict.ContainsKey(key));
+        }
+
+        public static void AddValue(Dictionary<Guid, decimal> dict, Guid key, decimal value)
+        {
+            try
+            {
+                dict.Add(key, value);
+            }
+            catch (System.ArgumentException)
+            {
+            }
+        }
 	}
 }

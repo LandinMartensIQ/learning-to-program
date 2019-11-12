@@ -44,7 +44,8 @@ namespace ListsLogicAndIterations.Tests
 			var actual = Dictionarys.GetValue(new Dictionary<Guid, decimal>
 			{
 				{ Guid.Empty, 1}
-			}, Guid.NewGuid());
+
+            }, Guid.NewGuid());
 
 			Assert.AreEqual(0, actual);
 		}
