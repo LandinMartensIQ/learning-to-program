@@ -10,130 +10,117 @@ namespace Tests
     public class CharacterCreationTests
     {
 
-        [Test]
-        public void successfulCharacterCreation()
+        public List<AbilityPoints> defaultabilityPoints()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var abilities = new List<AbilityPoints>();
+            abilities.Add(new Charisma(10));
+            abilities.Add(new Constitution(10));
+            abilities.Add(new Dexterity(10));
+            abilities.Add(new Intelligence(10));
+            abilities.Add(new Strength(10));
+            abilities.Add(new Wisdom(10));
 
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            return abilities;
+        }
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
 
-            Assert.IsTrue(myChar.AbilityStats.charisma == 10);
-            Assert.IsTrue(myChar.AbilityStats.constitution == 10);
-            Assert.IsTrue(myChar.AbilityStats.dexterity == 10);
-            Assert.IsTrue(myChar.AbilityStats.intelligence == 10);
-            Assert.IsTrue(myChar.AbilityStats.strength == 10);
-            Assert.IsTrue(myChar.AbilityStats.wisdom == 10);
+        [Test]
+        public void SuccessfulCharacterCreation()
+        {
+            var abilities = new List<AbilityPoints>();
+            abilities.Add(new Charisma(10));
+            abilities.Add(new Constitution(10));
+            abilities.Add(new Dexterity(10));
+            abilities.Add(new Intelligence(10));
+            abilities.Add(new Strength(10));
+            abilities.Add(new Wisdom(10));
 
-            Assert.IsTrue(myChar.fitnessLevel == Characters.FitnessLevel.extremely);
-            Assert.IsTrue(myChar.headShape == 100);
-            Assert.IsTrue(myChar.stringHeight == "5'");
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, abilities);
+
+            Assert.IsTrue(myChar.getAbilityValue("Charisma") == 10);
+            Assert.IsTrue(myChar.getAbilityValue("Constitution") == 10);
+            Assert.IsTrue(myChar.getAbilityValue("Dexterity") == 10);
+            Assert.IsTrue(myChar.getAbilityValue("Intelligence") == 10);
+            Assert.IsTrue(myChar.getAbilityValue("Strength") == 10);
+            Assert.IsTrue(myChar.getAbilityValue("Wisdom") == 10);
+
+            Assert.IsTrue(myChar.FitnessLevel == Characters.FitnessLevel.Extremely);
+            Assert.IsTrue(myChar.HeadShape == 100);
+            Assert.IsTrue(myChar.Height == "5'");
 
         }
 
         [Test]
         public void CharacterHeightUnderOneFoot()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
 
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 11, abilityPoints);
 
-            Assert.IsTrue(myChar.stringHeight == "11");
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 11, defaultabilityPoints());
+
+            Assert.IsTrue(myChar.Height == "11");
         }
 
         [Test]
         public void CharacterHeightOneFoot()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
 
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 12, defaultabilityPoints());
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 12, abilityPoints);
-
-            Assert.IsTrue(myChar.stringHeight == "1'");
+            Assert.IsTrue(myChar.Height == "1'");
         }
 
         [Test]
         public void CharacterHeightOneFootEleven()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            
 
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Somewhat, 23, defaultabilityPoints());
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 23, abilityPoints);
-
-            Assert.IsTrue(myChar.stringHeight == "1'11");
+            Assert.IsTrue(myChar.Height == "1'11");
         }
 
         [Test]
         public void CorrectlyStoredAbilityPoints()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var abilities = new List<AbilityPoints>();
+            abilities.Add(new Charisma(3));
+            abilities.Add(new Constitution(12));
+            abilities.Add(new Dexterity(7));
+            abilities.Add(new Intelligence(11));
+            abilities.Add(new Strength(13));
+            abilities.Add(new Wisdom(14));
 
-            abilityPoints.charisma = 3;
-            abilityPoints.constitution = 12;
-            abilityPoints.dexterity = 7;
-            abilityPoints.intelligence = 11;
-            abilityPoints.strength = 13;
-            abilityPoints.wisdom = 14;
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, abilities);
 
-            Assert.IsTrue(myChar.AbilityStats.charisma == 3);
-            Assert.IsTrue(myChar.AbilityStats.constitution == 12);
-            Assert.IsTrue(myChar.AbilityStats.dexterity == 7);
-            Assert.IsTrue(myChar.AbilityStats.intelligence == 11);
-            Assert.IsTrue(myChar.AbilityStats.strength == 13);
-            Assert.IsTrue(myChar.AbilityStats.wisdom == 14);
+            Assert.IsTrue(myChar.getAbilityValue("Charisma") == 3);
+            Assert.IsTrue(myChar.getAbilityValue("Constitution") == 12);
+            Assert.IsTrue(myChar.getAbilityValue("Dexterity") == 7);
+            Assert.IsTrue(myChar.getAbilityValue("Intelligence") == 11);
+            Assert.IsTrue(myChar.getAbilityValue("Strength") == 13);
+            Assert.IsTrue(myChar.getAbilityValue("Wisdom") == 14);
 
-            Assert.IsTrue(myChar.fitnessLevel == Characters.FitnessLevel.extremely);
-            Assert.IsTrue(myChar.headShape == 100);
-            Assert.IsTrue(myChar.stringHeight == "5'");
+            Assert.IsTrue(myChar.FitnessLevel == Characters.FitnessLevel.Extremely);
+            Assert.IsTrue(myChar.HeadShape == 100);
+            Assert.IsTrue(myChar.Height == "5'");
 
         }
 
         [Test]
-        public void NegativeCharismaThrowsError()
+        public void UnableToCreateCharacterWithInvalidAbilityScore()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
 
-            abilityPoints.charisma = -1;
-            abilityPoints.constitution = 20;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 11;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            var attributes = new List<AbilityPoints>();
+            attributes.Add(new Charisma(22));
 
             try
             {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
+                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, attributes);
             }
             catch (Exception e)
             {
-                Assert.IsTrue(e.Message == "Charisma must be between 0 and 20.\n");
+                Assert.IsTrue(e.Message == "Charisma was above the maximum of 20\nTotal of all ability points was not 60.\n");
             }
 
 
@@ -142,299 +129,239 @@ namespace Tests
         [Test]
         public void CharismaOver20ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var charisma = new Charisma(21);
 
-            abilityPoints.charisma = 21;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 5;
-            abilityPoints.strength = 9;
-            abilityPoints.wisdom = 5;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Charisma must be between 0 and 20.\n");
-            }
+            Assert.AreEqual("Charisma was above the maximum of 20\n", charisma.Validate());
+            
         }
 
+        [Test]
+        public void CharismaAt20Acceptable()
+        {
+            var charisma = new Charisma(20);
+
+            Assert.IsTrue(string.IsNullOrEmpty(charisma.Validate()));
+
+        }
+
+        [Test]
+        public void CharismaAt0Acceptable()
+        {
+            var charisma = new Charisma(0);
+
+            Assert.IsTrue(string.IsNullOrEmpty(charisma.Validate()));
+
+        }
 
         [Test]
         public void IntelligenceBelow5ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var intelligence = new Intelligence(4);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 20;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 4;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            Assert.AreEqual("Intelligence was below the minimum of 5\n", intelligence.Validate());
 
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Intelligence must be between 5 and 20.\n");
-            }
+        }
+        [Test]
+        public void IntelligenceAbove20ThrowsError()
+        {
+            var intelligence = new Intelligence(21);
+
+            Assert.AreEqual("Intelligence was above the maximum of 20\n", intelligence.Validate());
 
         }
 
         [Test]
-        public void IntelligenceAbove20ThrowsError()
+        public void IntelligenceAt5Acceptable()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var intelligence = new Intelligence(5);
 
-            abilityPoints.charisma = 5;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 6;
-            abilityPoints.intelligence = 21;
-            abilityPoints.strength = 8;
-            abilityPoints.wisdom = 10;
+            Assert.IsTrue(string.IsNullOrEmpty(intelligence.Validate()));
 
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Intelligence must be between 5 and 20.\n");
-            }
+        }
+        [Test]
+        public void IntelligenceAt20Acceptable()
+        {
+            var intelligence = new Intelligence(20);
+
+            Assert.IsTrue(string.IsNullOrEmpty(intelligence.Validate()));
 
         }
 
         [Test]
         public void WisdomBelow5ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var wisdom = new Wisdom(4);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 20;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 4;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Wisdom must be between 5 and 20.\n");
-            }
+            Assert.AreEqual("Wisdom was below the minimum of 5\n", wisdom.Validate());
 
         }
-
         [Test]
         public void WisdomAbove20ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var wisdom = new Wisdom(21);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 7;
-            abilityPoints.strength = 6;
-            abilityPoints.wisdom = 21;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Wisdom must be between 5 and 20.\n");
-            }
+            Assert.AreEqual("Wisdom was above the maximum of 20\n", wisdom.Validate());
 
         }
 
+        [Test]
+        public void WisdomAt5Acceptable()
+        {
+            var wisdom = new Wisdom(5);
+
+            Assert.IsTrue(string.IsNullOrEmpty(wisdom.Validate()));
+
+        }
+        [Test]
+        public void WisdomAt20Acceptable()
+        {
+            var wisdom = new Wisdom(20);
+
+            Assert.IsTrue(string.IsNullOrEmpty(wisdom.Validate()));
+
+        }
+
+
+        [Test]
+        public void DexterityBelow1ThrowsError()
+        {
+            var dexterity = new Dexterity(0);
+
+            Assert.AreEqual("Dexterity was below the minimum of 1\n", dexterity.Validate());
+
+        }
         [Test]
         public void DexterityAbove20ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var dexterity = new Dexterity(21);
 
-            abilityPoints.charisma = 5;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 21;
-            abilityPoints.intelligence = 9;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 5;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Dexterity must be between 1 and 20.\n");
-            }
+            Assert.AreEqual("Dexterity was above the maximum of 20\n", dexterity.Validate());
 
         }
 
         [Test]
-        public void Dexterity0ThrowsError()
+        public void DexterityAt1Acceptable()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var dexterity = new Dexterity(1);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 0;
-            abilityPoints.intelligence = 17;
-            abilityPoints.strength = 7;
-            abilityPoints.wisdom = 20;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Dexterity must be between 1 and 20.\n");
-            }
+            Assert.IsTrue(string.IsNullOrEmpty(dexterity.Validate()));
 
         }
-
         [Test]
-        public void StrengthAbove20ThrowsError()
+        public void DexterityAt20Acceptable()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var dexterity = new Dexterity(20);
 
-            abilityPoints.charisma = 5;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 9;
-            abilityPoints.strength = 21;
-            abilityPoints.wisdom = 5;
-
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Strength must be between 1 and 20.\n");
-            }
+            Assert.IsTrue(string.IsNullOrEmpty(dexterity.Validate()));
 
         }
 
         [Test]
         public void StrengthBelow1ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var att = new Strength(0);
 
-            abilityPoints.charisma = 15;
-            abilityPoints.constitution = 15;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 0;
-            abilityPoints.wisdom = 10;
+            Assert.AreEqual("Strength was below the minimum of 1\n", att.Validate());
 
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Strength must be between 1 and 20.\n");
-            }
+        }
+        [Test]
+        public void StrengthAbove20ThrowsError()
+        {
+            var att = new Strength(21);
+
+            Assert.AreEqual("Strength was above the maximum of 20\n", att.Validate());
 
         }
 
         [Test]
-        public void Constitution21ThrowsError()
+        public void StrengthAt1Acceptable()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var att = new Strength(1);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 21;
-            abilityPoints.dexterity = 7;
-            abilityPoints.intelligence = 16;
-            abilityPoints.strength = 1;
-            abilityPoints.wisdom = 9;
+            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
 
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Constitution must be between 10 and 20.\n");
-            }
+        }
+        [Test]
+        public void StrengthAt20Acceptable()
+        {
+            var att = new Strength(20);
+
+            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
 
         }
 
         [Test]
-        public void Constitution9ThrowsError()
+        public void ConstitutionBelow10ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var att = new Constitution(9);
 
-            abilityPoints.charisma = 6;
-            abilityPoints.constitution = 9;
-            abilityPoints.dexterity = 8;
-            abilityPoints.intelligence = 16;
-            abilityPoints.strength = 1;
-            abilityPoints.wisdom = 20;
+            Assert.AreEqual("Constitution was below the minimum of 10\n", att.Validate());
 
-            try
-            {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e.Message == "Constitution must be between 10 and 20.\n");
-            }
+        }
+        [Test]
+        public void ConstitutionAbove20ThrowsError()
+        {
+            var att = new Constitution(21);
+
+            Assert.AreEqual("Constitution was above the maximum of 20\n", att.Validate());
+
+        }
+
+        [Test]
+        public void ConstitutionAt10Acceptable()
+        {
+            var att = new Constitution(10);
+
+            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
+
+        }
+        [Test]
+        public void ConstitutionAt20Acceptable()
+        {
+            var att = new Constitution(20);
+
+            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
 
         }
 
         [Test]
         public void AllErrorsOnAbilityReturnedAtOnce()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
+            var allAbilities = new List<AbilityPoints>();
 
-            abilityPoints.charisma = 21;
-            abilityPoints.constitution = 21;
-            abilityPoints.dexterity = 21;
-            abilityPoints.intelligence = 21;
-            abilityPoints.strength = 21;
-            abilityPoints.wisdom = 21;
+            allAbilities.Add(new Charisma(21));
+            allAbilities.Add(new Constitution(21));
+            allAbilities.Add(new Dexterity(21));
+            allAbilities.Add(new Intelligence(21));
+            allAbilities.Add(new Strength(21));
+            allAbilities.Add(new Wisdom(21));
+
 
             try
             {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
+                var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, allAbilities);
             }
             catch (Exception e)
             {
-                Assert.IsTrue(e.Message == "Total of all ability points was not 60.\n" +
-                    "Intelligence must be between 5 and 20.\n" +
-                    "Wisdom must be between 5 and 20.\n" +
-                    "Dexterity must be between 1 and 20.\n" +
-                    "Strength must be between 1 and 20.\n" +
-                    "Charisma must be between 0 and 20.\n" +
-                    "Constitution must be between 10 and 20.\n");
+                Assert.IsTrue(e.Message == "Charisma was above the maximum of 20\n" +
+                    "Constitution was above the maximum of 20\n" +
+                    "Dexterity was above the maximum of 20\n" +
+                    "Intelligence was above the maximum of 20\n" +
+                    "Strength was above the maximum of 20\n" +
+                    "Wisdom was above the maximum of 20\n" +
+                    "Total of all ability points was not 60.\n");
             }
         }
 
+
         [Test]
-        public void headRoundnessOver100ThrowsError()
+        public void HeadRoundnessOver100ThrowsError()
         {
 
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
-
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
+            
             try
             {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(101, Characters.FitnessLevel.extremely, 60, abilityPoints);
+                var myChar = new Characters.CharacterBuilder().BuildCharacter(101, Characters.FitnessLevel.Extremely, 60, defaultabilityPoints());
             }
             catch (Exception e)
             {
@@ -442,21 +369,15 @@ namespace Tests
             }
 
         }
+
+
         [Test]
-        public void headRoundnessUnder0ThrowsError()
+        public void HeadRoundnessUnder0ThrowsError()
         {
-            AbilityPoints abilityPoints = new Characters.AbilityPoints();
-
-            abilityPoints.charisma = 10;
-            abilityPoints.constitution = 10;
-            abilityPoints.dexterity = 10;
-            abilityPoints.intelligence = 10;
-            abilityPoints.strength = 10;
-            abilityPoints.wisdom = 10;
-
+          
             try
             {
-                var myChar = new Characters.CharacterBuilder().BuildCharacter(-1, Characters.FitnessLevel.extremely, 60, abilityPoints);
+                var myChar = new Characters.CharacterBuilder().BuildCharacter(-1, Characters.FitnessLevel.Extremely, 60, defaultabilityPoints());
             }
 
             catch (Exception e)
@@ -465,5 +386,35 @@ namespace Tests
             }
 
         }
+
+        [Test]
+        public void UnabletoRetriveUnknownAbility()
+        {
+
+            var myChar = new Characters.CharacterBuilder().BuildCharacter(10, Characters.FitnessLevel.Extremely, 60, defaultabilityPoints());
+
+            Assert.AreEqual(-1,myChar.getAbilityValue("Stupidness"));
+        }
+
+        [Test]
+        public void UnabletoAddMultipleOfSameAbility()
+        {
+
+            var abils = defaultabilityPoints();
+            abils.Remove(abils[0]);
+            abils.Add(new Wisdom(10));
+
+            try
+            {
+                var myChar = new Characters.CharacterBuilder().BuildCharacter(10, Characters.FitnessLevel.Extremely, 60, abils);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual($"Wisdom already added when asked to add it again", e.Message);
+            }
+            
+
+        }
+
     }
 }
