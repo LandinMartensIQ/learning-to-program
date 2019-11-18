@@ -17,11 +17,12 @@ namespace ObjectOrientedProblems.Tests.ObjectValidationTests
 		[TestMethod]
 		public void PowerUp_ShouldAllowExternalPropertyChanges()
 		{
-			var powerUp = FightClubGame.PurchasePowerUp();
+            
+            var powerUp = FightClubGame.PurchasePowerUp();
 
-			powerUp.DamageBuff = 5;
+            powerUp.DamageBuff= 5;
 
-			Assert.AreEqual(5, powerUp.DamageBuff);
+            Assert.AreEqual(5, powerUp.DamageBuff);
 		}
 	}
 }

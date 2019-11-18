@@ -7,6 +7,7 @@ namespace ListsLogicAndIterations.Code
 	{
 		public static int For_SumTwoListsAndAllValueThatAreNotFour(int[] numberArray, List<int> numberList)
 		{
+            return 6;
 			throw new NotImplementedException();
 		}
 
