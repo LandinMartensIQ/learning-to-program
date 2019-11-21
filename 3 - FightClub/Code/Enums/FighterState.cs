@@ -1,10 +1,10 @@
 ﻿namespace ObjectOrientedProblems.Code.Enums
 {
-	public enum FighterState
-	{
-		Healthy,
-		Hurt,
-		KnockedOut,
-		Dead
-	}
+    public enum FighterState
+    {
+        Healthy,
+        Hurt,
+        KnockedOut,
+        Dead
+    }
 }

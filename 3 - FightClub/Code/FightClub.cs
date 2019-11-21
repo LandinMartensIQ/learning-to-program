@@ -1,26 +1,25 @@
-﻿using ObjectOrientedProblems.Code.Interfaces;
-using System;
-using ObjectOrientedProblems.Tests.ObjectValidationTests;
+﻿using FightClub.Code.Objects;
+using ObjectOrientedProblems.Code.Interfaces;
 
 namespace ObjectOrientedProblems.Code
 {
 
-	public static class FightClubGame
-	{
-		public static IPowerUp PurchasePowerUp()
+    public static class FightClubGame
+    {
+        public static IPowerUp PurchasePowerUp()
         {
             return new Juice();
-            // throw new NotImplementedException();
         }
 
         public static IPotion PurchasePotion()
-		{
-			throw new NotImplementedException();
-		}
+        {
+            return new MagicDrink();
+        }
 
-		public static IFighter HireFighter()
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public static IFighter HireFighter()
+        {
+            return new Warrior();
+        }
+    }
+
 }
