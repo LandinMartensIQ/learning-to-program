@@ -1,55 +1,61 @@
-﻿using AnimalShelterCode;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
-namespace AnimalShelterCode
+namespace AnimalShelters.Code
 {
     public class AnimalShelter
     {
-        public int AnimalCounter { get; private set; }
-
-        public List<Animal> Animals { get; private set; }
-
+        public List<Animal> Animals { get { return _Animals; } }
         public AnimalShelter()
         {
-            Animals = new List<Animal>();
-            AnimalCounter = 1;
+            _Animals = new List<Animal>();
         }
 
         public OperationResult AddAnimal(Animal animal)
         {
-            if (animal.Type == AnimalType.Bear || animal.Type == AnimalType.Deer) 
-            { 
-                return new OperationResult($"Animal Type {animal.Type} is not Supported");
+            if (IsSupported(animal.Type)) 
+            {
+                animal.AssignId();
+                _Animals.Add(animal);
+                return new OperationResult(animal);
             }
             else
             {
-                animal.UniqueAnimalId = AnimalCounter++;
-                Animals.Add(animal);
-                return new OperationResult(animal);
+                return new OperationResult($"Animal Type {animal.Type} is not Supported");
             }
         }
 
-        public List<Animal> GetAnimals(AnimalType filtertype)
+        public List<Animal> GetAnimals(FilterObject filter)
         {
-            var filteredlist = from animal in Animals
-                               where animal.Type == filtertype
-                               select animal;
+            var filteredList = _Animals;
 
-            return filteredlist.ToList();
+            if( filter.Type.HasValue && filter.CanFly.HasValue)
+            {
+                filteredList = _Animals.Where(a => a.CanFly == filter.CanFly
+                                             && a.Type == filter.Type).ToList();
+            }
+            else if (filter.Type.HasValue)
+            {
+                filteredList = _Animals.Where(a => a.Type == filter.Type).ToList();
+            }
+            else if (filter.CanFly.HasValue)
+            {
+                filteredList = _Animals.Where(a => a.CanFly == filter.CanFly).ToList();
+            }
+
+            return filteredList;
         }
         public List<Animal> GetAnimals()
         {
-            return Animals;
+            return _Animals;
         }
 
         public OperationResult RemoveAnimal(Animal animal)
         {
-            if (Animals.Contains(animal))
+            if (_Animals.Contains(animal))
             {
-                Animals.Remove(animal);
+                _Animals.Remove(animal);
                 return new OperationResult(animal);
             }
             else
@@ -58,11 +64,9 @@ namespace AnimalShelterCode
             }
         }
 
-        public OperationResult GetAnimalFromID(int uniqueAnimalId)
+        public OperationResult GetAnimalFromID(Guid uniqueAnimalId)
         {
-            var result = from animal in Animals
-                         where animal.UniqueAnimalId == uniqueAnimalId
-                         select animal;
+            var result = _Animals.Where(a => a.UniqueAnimalId == uniqueAnimalId);
 
             if (result.Count() == 1)
             {
@@ -77,5 +81,16 @@ namespace AnimalShelterCode
                 return new OperationResult("Multiple ID matches found - Shelter is in error state");
             }
         }
+        protected virtual bool IsSupported(AnimalType type)
+        {
+            var result =
+                (  type == AnimalType.Bird
+                || type == AnimalType.Cat
+                || type == AnimalType.Dog
+                || type == AnimalType.Snake);
+
+            return result;
+        }
+        private List<Animal> _Animals;
     }
 }

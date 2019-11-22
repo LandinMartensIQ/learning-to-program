@@ -1,19 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace AnimalShelterCode
+namespace AnimalShelters.Code
 {
     public class Animal
     {
+        public AnimalType Type { get; set; }
+        public Guid UniqueAnimalId { get { return _uniqueAnimalID; } }
+        public bool CanFly { get; set; }
 
         public Animal(AnimalType type)
         {
-            
             Type = type;
-
+            CanFly = Type == AnimalType.Bird;
         }
 
-        public AnimalType Type { get; private set; }
-        public int UniqueAnimalId { get; internal set;  }
+        public void AssignId()
+        {
+            if (UniqueAnimalId == Guid.Empty)
+                _uniqueAnimalID = Guid.NewGuid();
+        }
+
+        private Guid _uniqueAnimalID;
     }
 }
