@@ -12,7 +12,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Dog);
+            var animal = new Dog();
             var expected = 1;
 
             //Act
@@ -27,7 +27,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Bear);
+            var animal = new Bear();
             var expected = 0;
 
             //Act
@@ -42,8 +42,8 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal1 = new Animal(AnimalType.Cat);
-            var animal2 = new Animal(AnimalType.Cat);
+            var animal1 = new Cat();
+            var animal2 = new Cat();
 
             //Act
             shelter.AddAnimal(animal1);
@@ -58,7 +58,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Dog);
+            var animal = new Dog();
 
             //Act
             var actual = shelter.AddAnimal(animal);
@@ -73,7 +73,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Bear);
+            var animal = new Bear();
 
             //Act
             var actual = shelter.AddAnimal(animal);
@@ -88,7 +88,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Dog);
+            var animal = new Dog();
             var expected = true;
 
             //Act
@@ -104,7 +104,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Bear);
+            var animal = new Bear();
             var expected = false;
 
             //Act
@@ -120,7 +120,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Dog);
+            var animal = new Dog();
 
             //Act
             var actual = shelter.AddAnimal(animal);
@@ -135,13 +135,31 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Bear);
+            var animal = new Bear();
 
             //Act
             var actual = shelter.AddAnimal(animal);
 
             //Assert
             Assert.IsNotNull(actual.Error);
+
+        }
+
+        [TestMethod]
+        public void AddAnimal_AnimalAddedTwice_SecondAttemptFails()
+        {
+            //Arrange
+            var shelter = new AnimalShelter();
+            var animal = new Dog();
+            var expectedCount = 1;
+
+            //Act
+            shelter.AddAnimal(animal);
+            var actual = shelter.AddAnimal(animal);
+
+            //Assert
+            Assert.IsNotNull(actual.Error);
+            Assert.AreEqual(expectedCount, shelter.Animals.Count);
 
         }
     }

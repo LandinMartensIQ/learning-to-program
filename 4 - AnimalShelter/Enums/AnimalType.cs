@@ -2,11 +2,13 @@
 {
     public enum AnimalType
     {
+        NotSet,
         Cat,
         Dog,
         Deer,
         Bear,
         Bird,
-        Snake
+        Snake,
+        Other
     }
 }

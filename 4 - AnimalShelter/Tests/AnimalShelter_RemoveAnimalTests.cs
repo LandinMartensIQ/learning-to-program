@@ -13,7 +13,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
             var expected = 0;
 
@@ -30,8 +30,8 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal1 = new Animal(AnimalType.Cat);
-            var animal2 = new Animal(AnimalType.Dog);
+            var animal1 = new Cat();
+            var animal2 = new Dog();
             shelter.AddAnimal(animal1);
             var expected = 1;
 
@@ -48,7 +48,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
 
             //Act
@@ -64,8 +64,8 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal1 = new Animal(AnimalType.Cat);
-            var animal2 = new Animal(AnimalType.Dog);
+            var animal1 = new Cat();
+            var animal2 = new Dog();
             shelter.AddAnimal(animal1);
 
             //Act
@@ -81,7 +81,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
             var expected = true;
 
@@ -98,8 +98,8 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal1 = new Animal(AnimalType.Cat);
-            var animal2 = new Animal(AnimalType.Dog);
+            var animal1 = new Cat();
+            var animal2 = new Dog();
             shelter.AddAnimal(animal1);
             var expected = false;
 
@@ -116,8 +116,8 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal1 = new Animal(AnimalType.Cat);
-            var animal2 = new Animal(AnimalType.Dog);
+            var animal1 = new Cat();
+            var animal2 = new Dog();
             shelter.AddAnimal(animal1);
 
             //Act
@@ -133,7 +133,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
 
             //Act

@@ -13,40 +13,43 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Deer));
-            shelter.AddAnimal(new Animal(AnimalType.Bear));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Snake));
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Deer));
-            shelter.AddAnimal(new Animal(AnimalType.Bear));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Snake));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Deer());
+            shelter.AddAnimal(new Bear());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Snake());
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Deer());
+            shelter.AddAnimal(new Bear());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Snake());
+            var expected = 8;
 
             //Act
             var actual = shelter.GetAnimals();
 
             //Assert
-            Assert.AreEqual(shelter.Animals, actual);
+            Assert.AreEqual(expected, actual.Count);
         }
 
 
         [TestMethod]
-        public void GetAnimals_ReturnsBasedOnFilterObject_FlyingSetTypeSet()
+        public void GetAnimals_ReturnsBasedOnFilter_FlyingSetTypeSet()
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
             var expected = 1;
-            var filter = new FilterObject() { CanFly = false, Type = AnimalType.Cat };
+            var filter = new AnimalFilter() { 
+                CanFly = OptionContainer.Build(false), 
+                Type = new OptionContainer<AnimalType>(AnimalType.Cat) };
 
             //Act
             var actual = shelter.GetAnimals(filter);
@@ -57,18 +60,18 @@ namespace AnimalShelters.Tests
         }
 
         [TestMethod]
-        public void GetAnimals_ReturnsBasedOnFilterObject_FlyingSetTypeNotSet()
+        public void GetAnimals_ReturnsBasedOnFilter_FlyingSetTypeNotSet()
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
             var expected = 3;
-            var filter = new FilterObject() { CanFly = true, };
+            var filter = new AnimalFilter() { CanFly = OptionContainer.Build(true) };
 
             //Act
             var actual = shelter.GetAnimals(filter);
@@ -78,18 +81,18 @@ namespace AnimalShelters.Tests
 
         }
         [TestMethod]
-        public void GetAnimals_ReturnsBasedOnFilterObject_FlyingNotSetTypeSet()
+        public void GetAnimals_ReturnsBasedOnFilter_FlyingNotSetTypeSet()
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
             var expected = 2;
-            var filter = new FilterObject() { Type = AnimalType.Dog, };
+            var filter = new AnimalFilter() { Type = OptionContainer.Build(AnimalType.Dog) };
 
             //Act
             var actual = shelter.GetAnimals(filter);
@@ -100,18 +103,18 @@ namespace AnimalShelters.Tests
         }
 
         [TestMethod]
-        public void GetAnimals_ReturnsBasedOnFilterObject_NotSet()
+        public void GetAnimals_ReturnsBasedOnFilter_NotSet()
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
             var expected = 6;
-            var blankfilter = new FilterObject();
+            var blankfilter = new AnimalFilter();
 
             //Act
             var actual = shelter.GetAnimals(blankfilter);
@@ -121,19 +124,123 @@ namespace AnimalShelters.Tests
 
         }
 
+
         [TestMethod]
         public void GetAnimals_ReturnsNoResults_FlyingSetTypeSet()
         {
             //Arrange
             var shelter = new AnimalShelter();
-            shelter.AddAnimal(new Animal(AnimalType.Cat));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Dog));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
-            shelter.AddAnimal(new Animal(AnimalType.Bird));
+            shelter.AddAnimal(new Cat());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Dog());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
+            shelter.AddAnimal(new Bird());
             var expected = 0;
-            var filter = new FilterObject() { CanFly = true, Type = AnimalType.Cat };
+            var filter = new AnimalFilter() { 
+                CanFly = OptionContainer.Build(true), 
+                Type = OptionContainer.Build(AnimalType.Cat) };
+
+            //Act
+            var actual = shelter.GetAnimals(filter);
+
+            //Assert
+            Assert.AreEqual(expected, actual.Count);
+
+        }
+
+        [TestMethod]
+        public void GetAnimals_ReturnsResults_BasedOnSex()
+        {
+            //Arrange
+            var shelter = new AnimalShelter();
+            var animal1 = new Cat();
+            var animal2 = new Dog();
+            var animal3 = new Snake();
+            animal1.Sex = AnimalSex.Male;
+            animal2.Sex = AnimalSex.Male;
+            animal3.Sex = AnimalSex.Female;
+            shelter.AddAnimal(animal1);
+            shelter.AddAnimal(animal2);
+            shelter.AddAnimal(animal3);
+            var expected = 1;
+            var filter = new AnimalFilter() { Sex = OptionContainer.Build(AnimalSex.Female) };
+
+            //Act
+            var actual = shelter.GetAnimals(filter);
+
+            //Assert
+            Assert.AreEqual(expected, actual.Count);
+
+        }
+
+        [TestMethod]
+        public void GetAnimals_ReturnsResultsBasedOnName_WhenNameExists()
+        {
+            //Arrange
+            var shelter = new AnimalShelter();
+            var animal1 = new Cat("Murphy");
+            var animal2 = new Dog("Rex");
+            var animal3 = new Snake("Cleo");
+            shelter.AddAnimal(animal1);
+            shelter.AddAnimal(animal2);
+            shelter.AddAnimal(animal3);
+            var expected = 1;
+            var filter = new AnimalFilter() { Name = OptionContainer.Build("Rex") };
+
+            //Act
+            var actual = shelter.GetAnimals(filter);
+
+            //Assert
+            Assert.AreEqual(expected, actual.Count);
+
+        }
+
+        [TestMethod]
+        public void GetAnimals_ReturnsNoResultsBasedOnName_WhenNameDoesNotExist()
+        {
+            //Arrange
+            var shelter = new AnimalShelter();
+            var animal1 = new Cat("Murphy");
+            var animal2 = new Dog("Rex");
+            var animal3 = new Snake("Cleo");
+            shelter.AddAnimal(animal1);
+            shelter.AddAnimal(animal2);
+            shelter.AddAnimal(animal3);
+            var expected = 0;
+            var filter = new AnimalFilter() { Name = OptionContainer.Build("Brian") };
+
+            //Act
+            var actual = shelter.GetAnimals(filter);
+
+            //Assert
+            Assert.AreEqual(expected, actual.Count);
+
+        }
+
+        [TestMethod]
+        public void GetAnimals_ReturnsResultsBasedOnMultipleParams()
+        {
+            //Arrange
+            var shelter = new AnimalShelter();
+            var animal1 = new Cat("Murphy") { Sex = AnimalSex.Male, Neutered = true, Domesticated = true };
+            var animal2 = new Dog("Rex") { Sex = AnimalSex.Male, Domesticated = true };
+            var animal3 = new Snake("Cleo") { Sex = AnimalSex.Female, Domesticated = true };
+            var animal4 = new Bird("Polly") { Sex = AnimalSex.Male, Neutered = true, Domesticated = true };
+            var animal5 = new Dog("Greg") { Sex = AnimalSex.Male, Neutered = true, Domesticated = false };
+            var animal6 = new Cat("Phylis") { Domesticated = true };
+            shelter.AddAnimal(animal1);
+            shelter.AddAnimal(animal2);
+            shelter.AddAnimal(animal3);
+            shelter.AddAnimal(animal4);
+            shelter.AddAnimal(animal5);
+            shelter.AddAnimal(animal6);
+            var expected = 1;
+            var filter = new AnimalFilter() { 
+                Sex = OptionContainer.Build(AnimalSex.Male), 
+                Neutered = OptionContainer.Build(true), 
+                CanFly = OptionContainer.Build(false), 
+                Domesticated = OptionContainer.Build(true) };
 
             //Act
             var actual = shelter.GetAnimals(filter);
@@ -148,7 +255,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
 
             //Act
@@ -164,10 +271,11 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var notFound = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e");
+            var animal = new Cat();
+            Guid ID = animal.UniqueAnimalId;
 
             //Act
-            var actual = shelter.GetAnimalFromID(notFound);
+            var actual = shelter.GetAnimalFromID(ID);
 
             //Assert
             Assert.IsNull(actual.Animal);
@@ -179,7 +287,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
 
             //Act
@@ -195,10 +303,11 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var notFound = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e");
+            var animal = new Cat();
+            Guid ID = animal.UniqueAnimalId;
 
             //Act
-            var actual = shelter.GetAnimalFromID(notFound);
+            var actual = shelter.GetAnimalFromID(ID);
 
             //Assert
             Assert.IsNotNull(actual.Error);
@@ -210,7 +319,7 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            var animal = new Animal(AnimalType.Cat);
+            var animal = new Cat();
             shelter.AddAnimal(animal);
             var expected = true;
 
@@ -227,11 +336,12 @@ namespace AnimalShelters.Tests
         {
             //Arrange
             var shelter = new AnimalShelter();
-            Guid notFound = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e");
+            var animal = new Cat();
+            Guid ID = animal.UniqueAnimalId;
             var expected = false;
 
             //Act
-            var actual = shelter.GetAnimalFromID(notFound);
+            var actual = shelter.GetAnimalFromID(ID);
 
             //Assert
             Assert.AreEqual(expected, actual.OperationSuccess);
