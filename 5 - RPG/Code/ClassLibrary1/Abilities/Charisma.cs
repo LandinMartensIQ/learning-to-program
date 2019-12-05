@@ -14,12 +14,13 @@ namespace Characters
 
     public class Charisma : AbilityPoints
     {
+        public override AbilityNames AbilityName => AbilityNames.Charisma;
+
+        public override int Max => 20;
+        public override int Min => 0;
 
         public Charisma(int value)
-        {
-            AbilityName = "Charisma";
-            Max = 20;
-            Min = 0;
+        {            
             Value = value;
         }
 

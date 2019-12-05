@@ -14,12 +14,13 @@ namespace Characters
 
     public class Dexterity : AbilityPoints
     {
+        public override AbilityNames AbilityName => AbilityNames.Dexterity;
+        public override int Max => 20;
+        public override int Min => 1;
 
         public Dexterity(int value)
         {
-            AbilityName = "Dexterity";
-            Max = 20;
-            Min = 1;
+ 
             Value = value;
         }
 

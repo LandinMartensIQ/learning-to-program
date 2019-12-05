@@ -14,12 +14,13 @@ namespace Characters
 
     public class Constitution : AbilityPoints
     {
+        public override AbilityNames AbilityName => AbilityNames.Constitution;
+
+        public override int Max => 20;
+        public override int Min => 10;
 
         public Constitution(int value)
         {
-            AbilityName = "Constitution";
-            Max = 20;
-            Min = 10;
             Value = value;
         }
 

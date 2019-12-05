@@ -6,7 +6,7 @@ namespace Characters
 {
     public static class Utilities
     {
-        public static string convertInchestoFeetAndInchString(int inches)
+        public static string ConvertInchestoFeetAndInchString(int inches)
         {
             //may need to account for negatives later, but not listed as a requirement
             var returnValue = "";
@@ -26,7 +26,7 @@ namespace Characters
             return returnValue;
         }
 
-        public static int convertFeetAndInchestoInt(string FeetAndInches)
+        public static int ConvertFeetAndInchestoInt(string FeetAndInches)
         {
             int returnValue = 0;
 

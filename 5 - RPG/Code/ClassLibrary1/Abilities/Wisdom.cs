@@ -14,12 +14,13 @@ namespace Characters
 
     public class Wisdom:AbilityPoints
     {
+        
+        public override AbilityNames AbilityName => AbilityNames.Wisdom;
+        public override int Max => 20;
+        public override int Min => 5;
 
         public Wisdom(int value)
-        {
-            AbilityName = "Wisdom";
-            Max = 20;
-            Min = 5;
+        {   
             Value = value;
         }
 

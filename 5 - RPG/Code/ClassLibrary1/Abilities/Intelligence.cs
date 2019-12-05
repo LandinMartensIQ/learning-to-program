@@ -15,11 +15,13 @@ namespace Characters
     public class Intelligence:AbilityPoints
     {
 
+        public override AbilityNames AbilityName => AbilityNames.Intelligence;
+        public override int Max => 20;
+        public override int Min => 5;
+
         public Intelligence(int value)
         {
-            AbilityName = "Intelligence";
-            Max = 20;
-            Min = 5;
+
             Value = value;
         }
 

@@ -15,11 +15,12 @@ namespace Characters
     public class Strength : AbilityPoints
     {
 
+        public override AbilityNames AbilityName => AbilityNames.Strength;
+        public override int Max => 20;
+        public override int Min => 1;
         public Strength(int value)
         {
-            AbilityName = "Strength";
-            Max = 20;
-            Min = 1;
+
             Value = value;
         }
 

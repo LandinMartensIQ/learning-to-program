@@ -37,12 +37,12 @@ namespace Tests
 
             var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, abilities);
 
-            Assert.IsTrue(myChar.getAbilityValue("Charisma") == 10);
-            Assert.IsTrue(myChar.getAbilityValue("Constitution") == 10);
-            Assert.IsTrue(myChar.getAbilityValue("Dexterity") == 10);
-            Assert.IsTrue(myChar.getAbilityValue("Intelligence") == 10);
-            Assert.IsTrue(myChar.getAbilityValue("Strength") == 10);
-            Assert.IsTrue(myChar.getAbilityValue("Wisdom") == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Charisma) == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Constitution) == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Dexterity) == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Intelligence) == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Strength) == 10);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Wisdom) == 10);
 
             Assert.IsTrue(myChar.FitnessLevel == Characters.FitnessLevel.Extremely);
             Assert.IsTrue(myChar.HeadShape == 100);
@@ -94,12 +94,12 @@ namespace Tests
 
             var myChar = new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, abilities);
 
-            Assert.IsTrue(myChar.getAbilityValue("Charisma") == 3);
-            Assert.IsTrue(myChar.getAbilityValue("Constitution") == 12);
-            Assert.IsTrue(myChar.getAbilityValue("Dexterity") == 7);
-            Assert.IsTrue(myChar.getAbilityValue("Intelligence") == 11);
-            Assert.IsTrue(myChar.getAbilityValue("Strength") == 13);
-            Assert.IsTrue(myChar.getAbilityValue("Wisdom") == 14);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Charisma) == 3);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Constitution) == 12);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Dexterity) == 7);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Intelligence) == 11);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Strength) == 13);
+            Assert.IsTrue(myChar.getAbilityValue(AbilityNames.Wisdom) == 14);
 
             Assert.IsTrue(myChar.FitnessLevel == Characters.FitnessLevel.Extremely);
             Assert.IsTrue(myChar.HeadShape == 100);
@@ -120,7 +120,7 @@ namespace Tests
             }
             catch (Exception e)
             {
-                Assert.IsTrue(e.Message == "Charisma was above the maximum of 20\nTotal of all ability points was not 60.\n");
+                Assert.IsTrue(e.Message.Equals("Charisma was above the maximum of 20\nTotal of all ability points was not 60.\n"));
             }
 
 
@@ -131,7 +131,7 @@ namespace Tests
         {
             var charisma = new Charisma(21);
 
-            Assert.AreEqual("Charisma was above the maximum of 20\n", charisma.Validate());
+            Assert.AreEqual("Charisma was above the maximum of 20\n", charisma.GetValidationFailureMessage());
             
         }
 
@@ -140,7 +140,7 @@ namespace Tests
         {
             var charisma = new Charisma(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(charisma.Validate()));
+            Assert.IsTrue(charisma.IsValid());
 
         }
 
@@ -149,7 +149,7 @@ namespace Tests
         {
             var charisma = new Charisma(0);
 
-            Assert.IsTrue(string.IsNullOrEmpty(charisma.Validate()));
+            Assert.IsTrue(charisma.IsValid());
 
         }
 
@@ -158,7 +158,7 @@ namespace Tests
         {
             var intelligence = new Intelligence(4);
 
-            Assert.AreEqual("Intelligence was below the minimum of 5\n", intelligence.Validate());
+            Assert.AreEqual("Intelligence was below the minimum of 5\n", intelligence.GetValidationFailureMessage());
 
         }
         [Test]
@@ -166,7 +166,7 @@ namespace Tests
         {
             var intelligence = new Intelligence(21);
 
-            Assert.AreEqual("Intelligence was above the maximum of 20\n", intelligence.Validate());
+            Assert.AreEqual("Intelligence was above the maximum of 20\n", intelligence.GetValidationFailureMessage());
 
         }
 
@@ -175,7 +175,7 @@ namespace Tests
         {
             var intelligence = new Intelligence(5);
 
-            Assert.IsTrue(string.IsNullOrEmpty(intelligence.Validate()));
+            Assert.IsTrue((intelligence.IsValid()));
 
         }
         [Test]
@@ -183,7 +183,7 @@ namespace Tests
         {
             var intelligence = new Intelligence(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(intelligence.Validate()));
+            Assert.IsTrue((intelligence.IsValid()));
 
         }
 
@@ -192,7 +192,7 @@ namespace Tests
         {
             var wisdom = new Wisdom(4);
 
-            Assert.AreEqual("Wisdom was below the minimum of 5\n", wisdom.Validate());
+            Assert.AreEqual("Wisdom was below the minimum of 5\n", wisdom.GetValidationFailureMessage());
 
         }
         [Test]
@@ -200,7 +200,7 @@ namespace Tests
         {
             var wisdom = new Wisdom(21);
 
-            Assert.AreEqual("Wisdom was above the maximum of 20\n", wisdom.Validate());
+            Assert.AreEqual("Wisdom was above the maximum of 20\n", wisdom.GetValidationFailureMessage());
 
         }
 
@@ -209,7 +209,7 @@ namespace Tests
         {
             var wisdom = new Wisdom(5);
 
-            Assert.IsTrue(string.IsNullOrEmpty(wisdom.Validate()));
+            Assert.IsTrue((wisdom.IsValid()));
 
         }
         [Test]
@@ -217,7 +217,7 @@ namespace Tests
         {
             var wisdom = new Wisdom(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(wisdom.Validate()));
+            Assert.IsTrue((wisdom.IsValid()));
 
         }
 
@@ -227,7 +227,7 @@ namespace Tests
         {
             var dexterity = new Dexterity(0);
 
-            Assert.AreEqual("Dexterity was below the minimum of 1\n", dexterity.Validate());
+            Assert.AreEqual("Dexterity was below the minimum of 1\n", dexterity.GetValidationFailureMessage());
 
         }
         [Test]
@@ -235,7 +235,7 @@ namespace Tests
         {
             var dexterity = new Dexterity(21);
 
-            Assert.AreEqual("Dexterity was above the maximum of 20\n", dexterity.Validate());
+            Assert.AreEqual("Dexterity was above the maximum of 20\n", dexterity.GetValidationFailureMessage());
 
         }
 
@@ -244,7 +244,7 @@ namespace Tests
         {
             var dexterity = new Dexterity(1);
 
-            Assert.IsTrue(string.IsNullOrEmpty(dexterity.Validate()));
+            Assert.IsTrue((dexterity.IsValid()));
 
         }
         [Test]
@@ -252,7 +252,7 @@ namespace Tests
         {
             var dexterity = new Dexterity(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(dexterity.Validate()));
+            Assert.IsTrue((dexterity.IsValid()));
 
         }
 
@@ -261,7 +261,7 @@ namespace Tests
         {
             var att = new Strength(0);
 
-            Assert.AreEqual("Strength was below the minimum of 1\n", att.Validate());
+            Assert.AreEqual("Strength was below the minimum of 1\n", att.GetValidationFailureMessage());
 
         }
         [Test]
@@ -269,7 +269,7 @@ namespace Tests
         {
             var att = new Strength(21);
 
-            Assert.AreEqual("Strength was above the maximum of 20\n", att.Validate());
+            Assert.AreEqual("Strength was above the maximum of 20\n", att.GetValidationFailureMessage());
 
         }
 
@@ -278,7 +278,7 @@ namespace Tests
         {
             var att = new Strength(1);
 
-            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
+            Assert.IsTrue((att.IsValid()));
 
         }
         [Test]
@@ -286,7 +286,7 @@ namespace Tests
         {
             var att = new Strength(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
+            Assert.IsTrue((att.IsValid()));
 
         }
 
@@ -295,7 +295,7 @@ namespace Tests
         {
             var att = new Constitution(9);
 
-            Assert.AreEqual("Constitution was below the minimum of 10\n", att.Validate());
+            Assert.AreEqual("Constitution was below the minimum of 10\n", att.GetValidationFailureMessage());
 
         }
         [Test]
@@ -303,7 +303,7 @@ namespace Tests
         {
             var att = new Constitution(21);
 
-            Assert.AreEqual("Constitution was above the maximum of 20\n", att.Validate());
+            Assert.AreEqual("Constitution was above the maximum of 20\n", att.GetValidationFailureMessage());
 
         }
 
@@ -312,7 +312,7 @@ namespace Tests
         {
             var att = new Constitution(10);
 
-            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
+            Assert.IsTrue((att.IsValid()));
 
         }
         [Test]
@@ -320,7 +320,7 @@ namespace Tests
         {
             var att = new Constitution(20);
 
-            Assert.IsTrue(string.IsNullOrEmpty(att.Validate()));
+            Assert.IsTrue((att.IsValid()));
 
         }
 
@@ -387,21 +387,21 @@ namespace Tests
 
         }
 
-        [Test]
-        public void UnabletoRetriveUnknownAbility()
-        {
+        //[Test]
+        //public void UnabletoRetriveUnknownAbility()
+        //{
 
-            var myChar = new Characters.CharacterBuilder().BuildCharacter(10, Characters.FitnessLevel.Extremely, 60, defaultabilityPoints());
+        //    var myChar = new Characters.CharacterBuilder().BuildCharacter(10, Characters.FitnessLevel.Extremely, 60, defaultabilityPoints());
 
-            Assert.AreEqual(-1,myChar.getAbilityValue("Stupidness"));
-        }
+        //    Assert.AreEqual(-1,myChar.getAbilityValue(AbilityNames.Stupidness));
+        //}
 
         [Test]
         public void UnabletoAddMultipleOfSameAbility()
         {
 
             var abils = defaultabilityPoints();
-            abils.Remove(abils[0]);
+            abils.RemoveAt(0);
             abils.Add(new Wisdom(10));
 
             try
@@ -410,7 +410,7 @@ namespace Tests
             }
             catch (Exception e)
             {
-                Assert.AreEqual($"Wisdom already added when asked to add it again", e.Message);
+                Assert.AreEqual($"Wisdom has multiple entries please only include one.\n", e.Message);
             }
             
 

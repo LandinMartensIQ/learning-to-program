@@ -12,11 +12,11 @@ namespace Characters
         public int HeadShape { get; }
         public FitnessLevel FitnessLevel { get; }
         public string Height { get; }
-        private Dictionary<string, AbilityPoints> Abilities { get; set; }
+        private Dictionary<AbilityNames, AbilityPoints> Abilities { get; set; }
 
         //private Dictionary<string, AbilityPoints> _abilities;
 
-        public Character(int head,FitnessLevel fit, string height, Dictionary<string, AbilityPoints> stats)
+        public Character(int head,FitnessLevel fit, string height, Dictionary<AbilityNames, AbilityPoints> stats)
         {
             HeadShape = head;
             FitnessLevel = fit;
@@ -24,7 +24,7 @@ namespace Characters
             Abilities = stats;
         }
 
-        public int getAbilityValue(string abilityName)
+        public int getAbilityValue(AbilityNames abilityName)
         {
             try
             {
