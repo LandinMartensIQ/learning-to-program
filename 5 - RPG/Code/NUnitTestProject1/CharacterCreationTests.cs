@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Characters;
 using System.Collections.Generic;
+using System.Linq;
 
 
 
@@ -335,7 +336,6 @@ namespace Tests
             allAbilities.Add(new Intelligence(21));
             allAbilities.Add(new Strength(21));
             allAbilities.Add(new Wisdom(21));
-
 
             try
             {

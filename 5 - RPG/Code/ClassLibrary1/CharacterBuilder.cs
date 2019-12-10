@@ -12,29 +12,46 @@ namespace Characters
         public Character BuildCharacter(int head, FitnessLevel fit, int heightInInches, List<AbilityPoints> distributedPoints)
         {
 
-            int expectedAbilityPointTotal = 60;
+            
+            Dictionary<AbilityNames, AbilityPoints> validatedAbilities = new Dictionary<AbilityNames, AbilityPoints>();
 
             if (head < 0 || head > 100)
             {
                 throw new Exception("Unable to create character headShape should be between 0 and 100.\n");
             }
 
-            Dictionary<AbilityNames, AbilityPoints> validatedAbilities = new Dictionary<AbilityNames, AbilityPoints>();
+            var errors = CheckForErrorsOnAbilityValues(distributedPoints);
+
+            if (string.IsNullOrEmpty(errors))
+            {
+                validatedAbilities = distributedPoints.ToDictionary(k => k.AbilityName, a => a);
+            }
+            else
+            {
+                throw new Exception(errors);
+            }
+
+            var height = Utilities.ConvertInchestoFeetAndInchString(heightInInches);
+            var newCharacter = new Character(head, fit, height, validatedAbilities);
+
+            return newCharacter;
+        }
+
+
+        private string CheckForErrorsOnAbilityValues (List<AbilityPoints> distributedPoints)
+        {
+            int expectedAbilityPointTotal = 60;
 
             string errormessages = "";
 
             if (distributedPoints.All(x => x.IsValid()))
             {
                 var test = distributedPoints.GroupBy(x => x.AbilityName).Where(g => g.Count() > 1).ToList();
-                if (test.Count()>0)
+                if (test.Count() > 0)
                 {
                     errormessages += $"{test.First().Key} has multiple entries please only include one.\n";
                 }
-                else
-                {
-                    validatedAbilities=distributedPoints.ToDictionary(k => k.AbilityName, a => a);
-                }
-
+ 
             }
             else
             {
@@ -52,11 +69,28 @@ namespace Characters
             {
                 throw new Exception(errormessages);
             }
+            return errormessages;
 
-            var height = Utilities.ConvertInchestoFeetAndInchString(heightInInches);
-            var newCharacter = new Character(head, fit, height, validatedAbilities);
+        }
 
-            return newCharacter;
+        public Character ReSpec(Character currentCharacter, List<AbilityPoints> distributedPoints)
+        {
+
+            Dictionary<AbilityNames, AbilityPoints> validatedAbilities = new Dictionary<AbilityNames, AbilityPoints>();
+            var errors = CheckForErrorsOnAbilityValues(distributedPoints);
+
+            if (string.IsNullOrEmpty(errors))
+            {
+                validatedAbilities = distributedPoints.ToDictionary(k => k.AbilityName, a => a);
+            }
+            else
+            {
+                throw new Exception(errors);
+            }
+
+            return new Character(currentCharacter.HeadShape, currentCharacter.FitnessLevel,
+                currentCharacter.Height, validatedAbilities);
+
         }
 
     }

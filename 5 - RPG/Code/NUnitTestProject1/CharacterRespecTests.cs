@@ -9,47 +9,68 @@ namespace Tests
     class CharacterRespecTests
     {
 
-        //public Character defaultCharacter()
-        //{
-        //    AbilityPoints abilityPoints = defaultAbilityPoints();
-        //    return new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.extremely, 60, abilityPoints);
-        //}
-        //public AbilityPoints defaultAbilityPoints()
-        //{
-        //    AbilityPoints abilityPoints = new Characters.AbilityPoints();
+        public Character defaultCharacter()
+        {
+            List<AbilityPoints> abilityPoints = defaultAbilityPoints();
+            return new Characters.CharacterBuilder().BuildCharacter(100, Characters.FitnessLevel.Extremely, 60, abilityPoints);
+        }
+        public List<AbilityPoints> defaultAbilityPoints()
+        {
+            List<AbilityPoints> abilityPoints = new List<AbilityPoints>();
 
-        //    abilityPoints.charisma = 10;
-        //    abilityPoints.constitution = 10;
-        //    abilityPoints.dexterity = 10;
-        //    abilityPoints.intelligence = 10;
-        //    abilityPoints.strength = 10;
-        //    abilityPoints.wisdom = 10;
+            abilityPoints.Add(new Charisma(10));
+            abilityPoints.Add(new Constitution(10));
+            abilityPoints.Add(new Dexterity(10));
+            abilityPoints.Add(new Intelligence(10));
+            abilityPoints.Add(new Strength(10));
+            abilityPoints.Add(new Wisdom(10));
 
-        //    return abilityPoints;
-        //}
+            return abilityPoints;
+        }
 
-        //[Test]
-        //public void successfulCharacterRespec()
-        //{
-        //    var myChar = defaultCharacter();
+        [Test]
+        public void successfulCharacterRespec()
+        {
+            var myChar = defaultCharacter();
 
-        //    AbilityPoints abilityPoints = defaultAbilityPoints();
-        //    abilityPoints.charisma = 11;
-        //    abilityPoints.dexterity = 9;
+            List<AbilityPoints> abilityPoints = defaultAbilityPoints();
 
-        //    var modifiedChar = new CharacterBuilder().ReSpec(myChar, abilityPoints);
+            abilityPoints.Find(x=>x.AbilityName.Equals(AbilityNames.Charisma)).Value=11;
+            abilityPoints.Find(x => x.AbilityName.Equals(AbilityNames.Dexterity)).Value = 9;
 
-        //    Assert.IsTrue(modifiedChar.AbilityStats.charisma == 11);
-        //    Assert.IsTrue(modifiedChar.AbilityStats.constitution == 10);
-        //    Assert.IsTrue(modifiedChar.AbilityStats.dexterity == 9);
-        //    Assert.IsTrue(modifiedChar.AbilityStats.intelligence == 10);
-        //    Assert.IsTrue(modifiedChar.AbilityStats.strength == 10);
-        //    Assert.IsTrue(modifiedChar.AbilityStats.wisdom == 10);
+            var modifiedChar = new CharacterBuilder().ReSpec(myChar, abilityPoints);
 
-        //    Assert.IsTrue(modifiedChar.fitnessLevel == Characters.FitnessLevel.extremely);
-        //    Assert.IsTrue(modifiedChar.headShape == 100);
-        //    Assert.IsTrue(modifiedChar.stringHeight == "5'");
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Charisma) == 11);
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Constitution) == 10);
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Dexterity) == 9);
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Intelligence) == 10);
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Strength) == 10);
+            Assert.IsTrue(modifiedChar.getAbilityValue(AbilityNames.Wisdom) == 10);
 
-        //}
+            Assert.IsTrue(modifiedChar.FitnessLevel == Characters.FitnessLevel.Extremely);
+            Assert.IsTrue(modifiedChar.HeadShape == 100);
+            Assert.IsTrue(modifiedChar.Height == "5'");
+
+        }
+
+        [Test]
+        public void CharacterRespecThrowsErrorOnInvalidStat()
+        {
+            var myChar = defaultCharacter();
+
+            List<AbilityPoints> abilityPoints = defaultAbilityPoints();
+
+            abilityPoints.Find(x => x.AbilityName.Equals(AbilityNames.Constitution)).Value = 9;
+            abilityPoints.Find(x => x.AbilityName.Equals(AbilityNames.Dexterity)).Value = 11;
+            try
+            {
+                var modifiedChar = new CharacterBuilder().ReSpec(myChar, abilityPoints);
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(e.Message.Equals("Constitution was below the minimum of 10\n"));
+            }
+
+        }
     }
 }
