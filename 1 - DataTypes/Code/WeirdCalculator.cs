@@ -24,7 +24,7 @@ namespace DataTypes.Code
 			 * Hint: You can make this method's body one line!
 			 */
 
-            var result = Convert.ToDecimal(firstValue) + Convert.ToDecimal(secondValue) + thirdValue;
+            var result = (decimal)firstValue + (decimal)secondValue + thirdValue;
 
             return result;
 
