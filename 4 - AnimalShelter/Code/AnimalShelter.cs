@@ -10,6 +10,14 @@ namespace AnimalShelter.Code
 {
     public class AnimalsShelter
     {
+        // declare a delegate
+        public delegate void AnimalBeenAddedToShelter(IAnimal animal); 
+        public delegate void AnimalRemovedFromShelter(IAnimal animal);
+
+        // declare an event of type delegate
+        public event AnimalBeenAddedToShelter AnimalBeenAddedToShelterEvent;
+        public event AnimalRemovedFromShelter AnimalRemovedFromShelterEvent;
+
         public Dictionary<Guid, IAnimal> Animals { get; set; }
         public AnimalsShelter() : this(new Dictionary<Guid, IAnimal>())
         {
@@ -30,6 +38,10 @@ namespace AnimalShelter.Code
                 message = "Animal is not a supported animal.";
             else
             {
+                // Raise an event by calling it like it's a method
+                // Chech that list of subscribers is not NULL
+                AnimalBeenAddedToShelterEvent?.Invoke(animal);
+
                 Animals.Add(animal.UniqueAnimalId, animal);
                 result = true;
             }
@@ -84,6 +96,10 @@ namespace AnimalShelter.Code
             {
                 Animals.Remove(animal.UniqueAnimalId);
                 result = true;
+
+                // Raise an event by calling it like it's a method
+                // Chech that list of subscribers is not NULL
+                AnimalRemovedFromShelterEvent?.Invoke(animal);
             }
 
             return new AnimalResult(result, animal, message);
