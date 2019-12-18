@@ -25,7 +25,7 @@ namespace ListsLogicAndIterations.Code
 
 		public static void AddValue(List<decimal> list, decimal value) => list.Add(value);
 
-        public static void AddValue(List<decimal> list, List<decimal> value) => list.AddRange(new List<decimal>(value));
+        public static void AddValue(List<decimal> list, List<decimal> value) => list.AddRange(value);
 
         public static void RemoveValue(List<decimal> list, decimal value) => list.Remove(value);
     }
