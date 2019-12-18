@@ -5,19 +5,11 @@ namespace ListsLogicAndIterations.Code
 {
 	public static class Lists
 	{
-		public static List<decimal> BuildList(decimal first, decimal second)
-		{
-            var newList = new List<decimal>();
-            newList.Add(first);
-            newList.Add(second);
-            return newList;
-        }
+        public static List<decimal> BuildList(decimal first, decimal second) => new List<decimal> { first, second };
 
-		public static decimal GetValue(List<decimal> list, int position)
+        public static decimal GetValue(List<decimal> list, int position)
 		{
-            if (position < 0)
-                return 0;
-            if (position > list.Count - 1)
+            if (position > list.Count - 1 || position < 0)
                 return 0;
             else
                 return list[position];

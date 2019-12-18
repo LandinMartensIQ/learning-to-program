@@ -10,33 +10,22 @@ namespace ListsLogicAndIterations.Code
 		{
 			// using For Loop
 			var sumArray = 0;
-            var sumList = 0;
+			var sumList = 0;
 
-            for (int i = 0; i < numberArray.Count(); i++)
+			for (int i = 0; i < numberArray.Count(); i++)
 			{
 				if (numberArray[i] != 4)
-                    sumArray += numberArray[i];
+					sumArray += numberArray[i];
 			}
 
-            for (int i = 0; i < numberList.Count; i++)
-            {
-                if (numberList[i] != 4)
-                    sumList += numberList[i];
-            }
+			for (int i = 0; i < numberList.Count; i++)
+			{
+				if (numberList[i] != 4)
+					sumList += numberList[i];
+			}
 
-
-            //return sumArray + numberList.Where(x => x != 4).Sum();
-
-            return sumArray + sumList;
-
-            // using Linq and storing in a variable
-            //var arraySum = numberArray.Where(x => x != 4).Sum();
-            //arraySum += numberList.Where(x => x != 4).Sum();
-            //return arraySum;
-
-            // using Linq and returning in ONE line
-            //return numberArray.Where(x => x != 4).Sum() + numberList.Where(x => x != 4).Sum();
-        }
+			return sumArray + sumList;
+		}
 
 		public static int ForEach_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList)
 		{
@@ -88,14 +77,8 @@ namespace ListsLogicAndIterations.Code
 		/*
 		 * If you have not learned about System.Linq and Lambda expressions, google `C# LINQ Tutorial`...trust me, you will thank me if you learn this early.
 		 */
-		public static int Linq_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList)
-		{
-			//LINQ
-			var result = numberList.Where(x => x != 4).Sum();
-
-			return result;
-		}
-	}
+		public static int Linq_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList) => numberList.Where(x => x != 4).Sum();
+    }
 }
  
  
