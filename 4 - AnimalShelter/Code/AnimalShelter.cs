@@ -39,7 +39,7 @@ namespace AnimalShelter.Code
             else
             {
                 // Raise an event by calling it like it's a method
-                // Chech that list of subscribers is not NULL
+                // Check that list of subscribers is not NULL
                 AnimalBeenAddedToShelterEvent?.Invoke(animal);
 
                 Animals.Add(animal.UniqueAnimalId, animal);
@@ -98,7 +98,7 @@ namespace AnimalShelter.Code
                 result = true;
 
                 // Raise an event by calling it like it's a method
-                // Chech that list of subscribers is not NULL
+                // Check that list of subscribers is not NULL
                 AnimalRemovedFromShelterEvent?.Invoke(animal);
             }
 

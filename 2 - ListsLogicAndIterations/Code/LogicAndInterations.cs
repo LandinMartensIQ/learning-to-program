@@ -78,7 +78,7 @@ namespace ListsLogicAndIterations.Code
 		 * If you have not learned about System.Linq and Lambda expressions, google `C# LINQ Tutorial`...trust me, you will thank me if you learn this early.
 		 */
 		public static int Linq_SumTwoListsAndAllValueThatAreNotFour(List<int> numberList) => numberList.Where(x => x != 4).Sum();
-    }
+	}
 }
  
  

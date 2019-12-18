@@ -24,7 +24,6 @@ namespace AnimalShelter.Tests
 
         [TestMethod]
         [Owner("KobiL")]
-
         public void AnimalCanFly_GetsSetToFalse_WhenCreatingAnAnimalThatIsNotABird()
         {
             // Arrange
