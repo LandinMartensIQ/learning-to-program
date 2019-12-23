@@ -20,12 +20,16 @@ namespace ListsLogicAndIterations.Tests
 		[TestMethod]
 		public void For_SumTwoListsAndAllValueThatAreNotFour_ShouldEqual9()
 		{
-			var array = new int[] { 4, 1, 2 };
+			// Arrange
+            var array = new int[] { 4, 1, 2 };
 			var list = new List<int> { 1, 2, 3 };
 			var expected = 9;
 
+            // Act 
 			var actual = LogicAndInterations.For_SumTwoListsAndAllValueThatAreNotFour(array, list);
 
+
+            // Assert
 			Assert.AreEqual(expected, actual);
 		}
 

@@ -4,10 +4,7 @@ namespace DataTypes.Code
 {
 	public static class WeirdCalculator
 	{
-		public static long SimpleWholeNumberAdd(int firstValue, long secondValue)
-		{
-			throw new NotImplementedException();
-		}
+		public static long SimpleWholeNumberAdd(int firstValue, long secondValue) => (long)firstValue + secondValue;
 
 		public static decimal SimpleDecimalAdd(float firstValue, double secondValue, decimal thirdValue)
 		{
@@ -19,12 +16,12 @@ namespace DataTypes.Code
 			 * Hint: You can make this method's body one line!
 			 */
 
-			throw new NotImplementedException();
+			return (decimal)firstValue + (decimal)secondValue + thirdValue;
 		}
 
 		public static decimal ComplexDecimalAdd(float firstValue, double secondValue, decimal thirdValue)
 		{
-			/*
+            /*
 			 * There's an interesting thing to point out when comparing double/float and decimal:
 			 * The range of double is ±5.0 × 10−324 to ±1.7 × 10308, while the range of decimal is (-7.9 x 1028 to 7.9 x 1028) / (100 to 28).
 			 * The range of float is half of double.
@@ -39,29 +36,41 @@ namespace DataTypes.Code
 			 * I will give you one clue / tip - You *will* need to handle exceptions for the final solution.
 			 * If you are new to exceptions, google "C# Exception Handling" - litterally half our jobs is googling :P
 			 */
+            decimal result;
+			try
+			{
+				result = (decimal)firstValue + (decimal)secondValue + thirdValue;
+			}
+			catch (Exception)
+			{
+				return 0m;
+			}
 
-			throw new NotImplementedException();
+			return result;
 		}
 
 		public static decimal ComplexAdd(char firstValue, string secondValue)
 		{
-			/*
+            /*
 			 * You will notice the TDD tests around this just "assume" it will work. Do not worry about handling exceptions or errors, assume input is valid.
 			 */
 
-			throw new NotImplementedException();
+            // TryParse Char to Decimal:
+            Decimal.TryParse(firstValue.ToString(), out decimal numOne);
+
+            // TryParse String to Decimal:
+            Decimal.TryParse(secondValue, out decimal numTwo);
+			return numOne + numTwo;
 		}
 
 		public static decimal ConditionalMath(int firstValue, int secondValue, bool returnNegative)
 		{
 			var actual = firstValue + secondValue;
 
-			if (returnNegative)
-			{
-				actual = actual * -1;
-			}
-
-			return actual;
+            if (actual < 0 && !returnNegative || actual > 0 && returnNegative)
+                return actual * -1;
+			else
+				return actual;
 		}
 	}
 }
